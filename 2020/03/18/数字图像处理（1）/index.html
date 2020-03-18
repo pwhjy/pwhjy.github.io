@@ -6,21 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>假言三段论</title>
+  <title>数字图像处理（1） | 假言三段论</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="假言三段论">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="初学数字图像处理​    我们在新接触数字图像处理的时候，肯定会接触到颜色模型的概念。原先我们接触最多的就是RGB颜色模型，但是其实还有更多的，例如HIS,YUV,YCbCr以及CIE L*a*b* 等。 图像表示光谱图 24位彩色图像：通常真彩色用三字节的R，G，B来表示，即8:8:8&#x3D;24位。 R、G、B（三基色波长（CIE）Blue：435.8nm，Green：546.1nm，Red：700">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字图像处理（1）">
+<meta property="og:url" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/index.html">
 <meta property="og:site_name" content="假言三段论">
+<meta property="og:description" content="初学数字图像处理​    我们在新接触数字图像处理的时候，肯定会接触到颜色模型的概念。原先我们接触最多的就是RGB颜色模型，但是其实还有更多的，例如HIS,YUV,YCbCr以及CIE L*a*b* 等。 图像表示光谱图 24位彩色图像：通常真彩色用三字节的R，G，B来表示，即8:8:8&#x3D;24位。 R、G、B（三基色波长（CIE）Blue：435.8nm，Green：546.1nm，Red：700">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318223735841.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318224901920.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318225953655.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200319001058849.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318234531177.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318232302252.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318232311802.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318232734304.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318234134202.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318234240662.png">
+<meta property="article:published_time" content="2020-03-18T15:58:03.000Z">
+<meta property="article:modified_time" content="2020-03-18T16:20:27.102Z">
 <meta property="article:author" content="Weihang Pan">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318223735841.png">
   
     <link rel="alternative" href="/atom.xml" title="假言三段论" type="application/atom+xml">
   
@@ -187,25 +198,25 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-数字图像处理（1）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-数字图像处理（1）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/" target="_blank">数字图像处理（1）</a>
-  
+    <h1 class="article-title" itemprop="name">
+      数字图像处理（1）
     </h1>
   
 
 
   
   
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/" class="archive-article-date">
         <time datetime="2020-03-18T15:58:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
 </a>
@@ -213,6 +224,27 @@
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">576字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">2分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
@@ -223,13 +255,89 @@
 <h2 id="图像表示"><a href="#图像表示" class="headerlink" title="图像表示"></a>图像表示</h2><h3 id="光谱图"><a href="#光谱图" class="headerlink" title="光谱图"></a>光谱图</h3><p><img src="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318223735841.png" alt></p>
 <p><strong>24位彩色图像</strong>：通常真彩色用三字节的R，G，B来表示，即8:8:8=24位。</p>
 <p><strong>R、G、B（三基色波长（CIE）</strong>Blue：435.8nm，Green：546.1nm，Red：700nm）</p>
-    
-    <a class="article-more-a" href="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/#more">more >></a>
-    
-    
+<a id="more"></a>
+
+<p><img src="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318224901920.png" alt></p>
+<h2 id="彩色模型"><a href="#彩色模型" class="headerlink" title="彩色模型"></a>彩色模型</h2><h3 id="·RGB模式（相加混色模型，用于发光物体）"><a href="#·RGB模式（相加混色模型，用于发光物体）" class="headerlink" title="·RGB模式（相加混色模型，用于发光物体）"></a>·RGB模式（相加混色模型，用于发光物体）</h3><p><img src="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318225953655.png" alt></p>
+<p>​    <strong>我们可以利用对RGB的三通道进行变换显示，就可以看到下面的变化，其中左上角是原图，另外三幅图分别是R、G、B三个单通道下的显示情况。</strong></p>
+<p><img src="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200319001058849.png" alt></p>
+<p><strong>每个像素都由RGB三原色构成</strong></p>
+<p><img src="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318234531177.png" alt></p>
+<h3 id="·CMYK模式（相减混色模型，用于不发光物体）"><a href="#·CMYK模式（相减混色模型，用于不发光物体）" class="headerlink" title="·CMYK模式（相减混色模型，用于不发光物体）"></a>·CMYK模式（相减混色模型，用于不发光物体）</h3><p><img src="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318232302252.png" alt></p>
+<p><strong>三次色（青色Cyan，洋红Magenta和黄色Yellow）。K为真正黑色。</strong></p>
+<p><img src="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318232311802.png" alt></p>
+<h3 id="·HSB模型"><a href="#·HSB模型" class="headerlink" title="·HSB模型"></a>·HSB模型</h3><p><strong>基于人类对颜色的感觉，HSB模型描述颜色的三个基本特征。又称为HSI空间。</strong></p>
+<p><strong>色相（或色度Hue）</strong></p>
+<p>​    <strong>是从物体反射或透过物体传播的颜色。在 0 到 360 度的标准色轮上，色相是按位置度量的。在通常的使用中，色相是由颜色名称标识的，比如红、橙或绿色。</strong> </p>
+<p><strong>饱和度（Saturation）</strong></p>
+<p>​    <strong>有时也称色品，是指颜色的强度或纯度。饱和度表示色相中灰成分所占的比例，用从 0%（灰色）到 100%（完全饱和）的百分比来度量。在标准色轮上，从中心向边缘饱和度是递增的。</strong> </p>
+<p><strong>亮度（Brightness）</strong></p>
+<p>​    <strong>是颜色的相对明暗程度，通常用从 0%（黑）到 100%（白）的百分比来度量。</strong></p>
+<p><img src="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318232734304.png" alt></p>
+<p><strong>在绘画艺术上，饱和度的概念可描述如下：</strong></p>
+<p>​    <strong>是一种纯色加上白色染料后的结果，此时色彩的饱和度发生变化而色彩的亮度不发生变化。</strong></p>
+<p><strong>同样在绘画艺术上，亮度的概念可描述如下：</strong></p>
+<p>​    <strong>是一种纯色加上黑色染料后的结果，此时色彩的亮度发生变化而色彩的饱和度不发生变化。</strong></p>
+<p><strong>HSB空间的坐标体系</strong></p>
+<p><img src="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318234134202.png" alt></p>
+<h3 id="·CIE-L-a-b-颜色模型"><a href="#·CIE-L-a-b-颜色模型" class="headerlink" title="·CIE L*a*b* 颜色模型"></a><strong>·CIE L*a*b*</strong> <strong>颜色模型</strong></h3><p><img src="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318234240662.png" alt></p>
 
     
 
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Weihang Pan
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://yoursite.com/2020/03/18/数字图像处理（1）/" title="数字图像处理（1）" target="_blank">http://yoursite.com/2020/03/18/数字图像处理（1）/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -239,16 +347,76 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/17/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -269,88 +437,14 @@
 
 
 
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/03/17/hello-world/" target="_blank">Hello World</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/03/17/hello-world/" class="archive-article-date">
-        <time datetime="2020-03-17T03:56:52.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-    
-    <a class="article-more-a" href="/2020/03/17/hello-world/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/03/17/hello-world/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
-  
-  
+
+
+
+
 
 
           </div>
@@ -390,8 +484,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
