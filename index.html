@@ -196,6 +196,85 @@
             
 
   
+    <article id="post-静态语言和动态语言的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/03/20/%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80%E5%92%8C%E5%8A%A8%E6%80%81%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_blank">静态语言和动态语言的区别</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/03/20/%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80%E5%92%8C%E5%8A%A8%E6%80%81%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+        <time datetime="2020-03-20T12:42:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>今天上课的时候老师提问了一下静态语言与动态语言的区别以及分别有哪些，突然一时间没有反应过来，特此去查阅了一些资料，以下做了一个转载。</p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="静态语言（强类型语言）"><a href="#静态语言（强类型语言）" class="headerlink" title="静态语言（强类型语言）"></a>静态语言（强类型语言）</h4><p>静态语言是在编译时变量的数据类型即可确定的语言，多数静态类型语言要求在使用变量之前必须声明数据类型。<br>例如：C++、Java、Delphi、C#等。</p>
+<h4 id="动态语言（弱类型语言）"><a href="#动态语言（弱类型语言）" class="headerlink" title="动态语言（弱类型语言）"></a>动态语言（弱类型语言）</h4><p>动态语言是在运行时确定数据类型的语言。变量使用之前不需要类型声明，通常变量的类型是被赋值的那个值的类型。<br>例如PHP/ASP/Ruby/Python/Perl/ABAP/SQL/JavaScript/Unix Shell等等。</p>
+    
+    <a class="article-more-a" href="/2020/03/20/%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80%E5%92%8C%E5%8A%A8%E6%80%81%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8C%BA%E5%88%AB/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/03/20/%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80%E5%92%8C%E5%8A%A8%E6%80%81%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数据挖掘的流程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -325,30 +404,9 @@
 <li>RGB空间转为HSI空间图像，对‘I’，也就是亮度（intensity）通道进行直方图均衡化，然后再转回为RGB图像；</li>
 </ul>
 <p>上述三种方法中，第一种方法会破坏图像的彩色结构，所以我采用了第二种方法对彩色图像进行处理。</p>
-<h1 id="什么是直方图？"><a href="#什么是直方图？" class="headerlink" title="什么是直方图？"></a>什么是直方图？</h1><p>在进行直方图均衡化之前我们要了解什么是直方图。</p>
-<p>直方图就是统计一个图像各灰度级值0~255有多少个像素点，因此一次只能对单通道进行处理。</p>
-<h1 id="单通道均衡化"><a href="#单通道均衡化" class="headerlink" title="单通道均衡化"></a>单通道均衡化</h1><p>那么单通道均衡化的原理与过程又是怎么样的，这对我们实现十分重要。</p>
-<p><strong>官方的解释是这样的：</strong></p>
-<p>直方图均衡化就是将原图灰度直方图比较集中的区间均匀分布到其他灰度区间，实际是使用累积分布函数来调整调</p>
-<p>整灰度值，达到对比度增强的效果。</p>
-<p>实际过程是通过以下公式来进行映射的。<br>$$<br>s=T(r)=(L-1)∫_0^rP_r (w)dw<br>$$<br>L=256为灰度级数，函数输入为原始图像像素值，输出是均衡化之后的结果。但由于图像是离散化的，所以在图像处理过程采用以下方式进行均衡化函数计算。</p>
-<p><img src="/2020/03/19/OpenCV%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E5%9D%87%E8%A1%A1%E5%8C%96/image-20200320191021801.png" alt="image-20200320191021801"></p>
-<p>由于图像计算中求和可近似替代积分，h(xi)表示每个灰度值对应的像素点总数，根据灰度值的递增主键累加得到对</p>
-<p>应得累计分布函数值。</p>
-<p>上述过程就是求出一个原像素点到均衡化的像素点的一个映射函数 f(x)。利用该映射函数就可以循环扫描图像的每</p>
-<p>一个像素x，然后得到f(x)替代原来的像素值x，达到均衡化的结果。</p>
-<h1 id="实际彩色图像均衡化过程"><a href="#实际彩色图像均衡化过程" class="headerlink" title="实际彩色图像均衡化过程"></a>实际彩色图像均衡化过程</h1><p>在实际均衡化过程中，步骤如下：</p>
-<ul>
-<li>读取一张彩色图并初始化hist[255]数组</li>
-<li>遍历彩色图的每一个像素点，计算histogram sum值，即获得每个通道下的直方图</li>
-<li>对每个通道进行直方图均衡化</li>
-<li>整合通道</li>
-<li>输出图像</li>
-</ul>
-<h1 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// histogram equalization</span></span><br><span class="line"><span class="function">cv::Mat <span class="title">histogram_equalization</span><span class="params">(cv::Mat img)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// get height and width</span></span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">width</span> = img.cols;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">height</span> = img.rows;</span><br><span class="line">    <span class="keyword">int</span> channel = img.channels();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// output image</span></span><br><span class="line">    cv::Mat out = cv::Mat::zeros(<span class="built_in">height</span>, <span class="built_in">width</span>, CV_8UC3);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// histogram equalization hyper-parameters</span></span><br><span class="line">    <span class="keyword">double</span> Zmax = <span class="number">255</span>;</span><br><span class="line">    <span class="keyword">double</span> hist[<span class="number">255</span>];</span><br><span class="line">    <span class="keyword">double</span> S = <span class="built_in">height</span> * <span class="built_in">width</span> * channel;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    <span class="keyword">double</span> hist_sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// histogram initialization</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">255</span>; i++) &#123;</span><br><span class="line">        hist[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// get histogram sum</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; <span class="built_in">height</span>; y++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; <span class="built_in">width</span>; x++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; channel; c++) &#123;</span><br><span class="line">                val = (<span class="keyword">int</span>)img.at&lt;cv::Vec3b&gt;(y, x)[c];</span><br><span class="line">                hist[val] ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// histogram equalization</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt; <span class="built_in">height</span>; y++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; <span class="built_in">width</span>; x++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; channel; c++) &#123;</span><br><span class="line">                val = (<span class="keyword">int</span>)img.at&lt;cv::Vec3b&gt;(y, x)[c];</span><br><span class="line"></span><br><span class="line">                <span class="comment">// get histogram sum &lt;= current pixel value</span></span><br><span class="line">                hist_sum = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; val; l++) &#123;</span><br><span class="line">                    hist_sum += hist[l];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// assign equalized value</span></span><br><span class="line">                out.at&lt;cv::Vec3b&gt;(y, x)[c] = (uchar)(Zmax / S * hist_sum);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="comment">// read image</span></span><br><span class="line">    cv::Mat img = cv::imread(<span class="string">"17.jpg"</span>, cv::IMREAD_COLOR);</span><br><span class="line">    cv:imshow(<span class="string">"原图"</span>, img);</span><br><span class="line">    <span class="comment">// histogram equalization</span></span><br><span class="line">    cv::Mat out = histogram_equalization(img);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//cv::imwrite("out.jpg", out);</span></span><br><span class="line">    cv::imshow(<span class="string">"answer"</span>, out);</span><br><span class="line">    cv::waitKey(<span class="number">0</span>);</span><br><span class="line">    cv::destroyAllWindows();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="实现结果"><a href="#实现结果" class="headerlink" title="实现结果"></a>实现结果</h1><p><img src="/2020/03/19/OpenCV%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E5%9D%87%E8%A1%A1%E5%8C%96/image-20200320203344324.png" alt="image-20200320203344324"></p>
-
+    
+    <a class="article-more-a" href="/2020/03/19/OpenCV%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E5%9D%87%E8%A1%A1%E5%8C%96/#more">more >></a>
+    
     
 
     

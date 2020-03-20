@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/19/OpenCV%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E5%9D%87%E8%A1%A1%E5%8C%96/image-20200320191021801.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/19/OpenCV%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E5%9D%87%E8%A1%A1%E5%8C%96/image-20200320203344324.png">
 <meta property="article:published_time" content="2020-03-19T06:21:13.000Z">
-<meta property="article:modified_time" content="2020-03-20T12:33:58.281Z">
+<meta property="article:modified_time" content="2020-03-20T12:39:42.674Z">
 <meta property="article:author" content="潘伟航">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2020/03/19/OpenCV%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E5%9D%87%E8%A1%A1%E5%8C%96/image-20200320191021801.png">
@@ -256,6 +256,8 @@
 <li>RGB空间转为HSI空间图像，对‘I’，也就是亮度（intensity）通道进行直方图均衡化，然后再转回为RGB图像；</li>
 </ul>
 <p>上述三种方法中，第一种方法会破坏图像的彩色结构，所以我采用了第二种方法对彩色图像进行处理。</p>
+<a id="more"></a>
+
 <h1 id="什么是直方图？"><a href="#什么是直方图？" class="headerlink" title="什么是直方图？"></a>什么是直方图？</h1><p>在进行直方图均衡化之前我们要了解什么是直方图。</p>
 <p>直方图就是统计一个图像各灰度级值0~255有多少个像素点，因此一次只能对单通道进行处理。</p>
 <h1 id="单通道均衡化"><a href="#单通道均衡化" class="headerlink" title="单通道均衡化"></a>单通道均衡化</h1><p>那么单通道均衡化的原理与过程又是怎么样的，这对我们实现十分重要。</p>
