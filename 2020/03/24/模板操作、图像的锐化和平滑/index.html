@@ -6,17 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | 假言三段论</title>
+  <title>模板操作、图像的锐化和平滑 | 假言三段论</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="假言三段论">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+  <meta name="description" content="预备知识：邻接：仅考虑像素间的空间关系连接：还考虑像素的灰度值通路：仅借助邻接来定义连通：还考虑像素的连接情况子集：一般为满足连接的像素集合 像素间的距离：距离度量函数：假设有3个像素p，q，r，坐标(x,y)，(s,t)，(u,v)  (D(p,q)≥0)（D(p,q)&#x3D;0,当且仅当p&#x3D;q）两个像素之间的距离总是正的 (D(p,q)&#x3D;D(q,p)) 距离与起终点的选择无关 D(p,r)≤D(p,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模板操作、图像的锐化和平滑">
+<meta property="og:url" content="http://yoursite.com/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/index.html">
 <meta property="og:site_name" content="假言三段论">
+<meta property="og:description" content="预备知识：邻接：仅考虑像素间的空间关系连接：还考虑像素的灰度值通路：仅借助邻接来定义连通：还考虑像素的连接情况子集：一般为满足连接的像素集合 像素间的距离：距离度量函数：假设有3个像素p，q，r，坐标(x,y)，(s,t)，(u,v)  (D(p,q)≥0)（D(p,q)&#x3D;0,当且仅当p&#x3D;q）两个像素之间的距离总是正的 (D(p,q)&#x3D;D(q,p)) 距离与起终点的选择无关 D(p,r)≤D(p,">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage0.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage1.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage2.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage3.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage4.png">
+<meta property="article:published_time" content="2020-03-24T07:05:59.000Z">
+<meta property="article:modified_time" content="2020-03-28T10:43:29.506Z">
 <meta property="article:author" content="潘伟航">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage0.png">
   
     <link rel="alternative" href="/atom.xml" title="假言三段论" type="application/atom+xml">
   
@@ -189,321 +199,289 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-模板操作、图像的锐化和平滑" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/29/%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E7%AD%89%E4%BB%B7%E7%9A%84%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
-        <time datetime="2020-03-29T12:25:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/29/%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E7%AD%89%E4%BB%B7%E7%9A%84%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_blank">二叉树转等价的中缀表达式</a>
   
+    <h1 class="article-title" itemprop="name">
+      模板操作、图像的锐化和平滑
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/25/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" class="archive-article-date">
-        <time datetime="2020-03-25T04:25:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
-</a>
-
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/25/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" target="_blank">数据挖掘</a>
-  
-    </h1>
-  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tags</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 <a href="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/" class="archive-article-date">
         <time datetime="2020-03-24T07:05:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
 </a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">681字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">2分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="预备知识："><a href="#预备知识：" class="headerlink" title="预备知识："></a><strong>预备知识：</strong></h2><p><strong>邻接</strong>：仅考虑像素间的空间关系<br><strong>连接</strong>：还考虑像素的灰度值<br>通路：仅借助邻接来定义<br><strong>连通</strong>：还考虑像素的连接情况<br>子集：一般为满足连接的像素集合</p>
+<p><strong>像素间的距离：</strong><br>距离度量函数：假设有3个像素p，q，r，坐标(x,y)，(s,t)，(u,v)</p>
+<ol>
+<li>(D(p,q)≥0)（D(p,q)=0,当且仅当p=q）两个像素之间的距离总是正的</li>
+<li>(D(p,q)=D(q,p)) 距离与起终点的选择无关</li>
+<li>D(p,r)≤D(p,q)+D(q,r) 最短距离是沿直线的</li>
+</ol>
+<p><strong>距离量度函数</strong></p>
+<ol>
+<li>欧式距离：D(p,q)=[(x-s)²+(y-t)²]^（1/2）</li>
+<li>城区距离：D(p,q)=|x-s|+|y-t|</li>
+<li>棋盘距离：D(p,q)=max(|x-s|,|y-t|)</li>
+</ol>
+<p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage0.png" alt="image-20200324160345719"></p>
+<h2 id="模板运算"><a href="#模板运算" class="headerlink" title="模板运算"></a>模板运算</h2><p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage1.png" alt="image-20200324160957002"></p>
+<p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage2.png" alt="image-20200324161116200"></p>
+<p>模板卷积的主要步骤：</p>
+<ol>
+<li>将模板在输入图像中漫游，并将模板中心与图像中的某个像素位置重合</li>
+<li>将模板上的各个系数与模板下各对应像素的灰度值相乘</li>
+<li>将所有乘积相加（为保持灰度范围，唱将结果再除以模板系数之和）</li>
+<li>将上述结果（模板的输出响应）赋给输出图像中对应模板中心位置的像素</li>
+</ol>
+<p>模板排序的主要步骤：</p>
+<ol>
+<li>将模板在输入图像中漫游，并将模板中心与图像中某个像素位置重合</li>
+<li>读取模板下输入图像中各对应像素的灰度值</li>
+<li>将这些灰度值进行排序，一般将它们从小到大拍成一列（单增）</li>
+<li>根据运算目的从排序结果中选一个序，取出该序像素的灰度值</li>
+<li>将取出的灰度值赋给输出图像中对应模板中心位置的像素</li>
+</ol>
+<p>图像边界处的模板运算</p>
+<p>​    当模板中心对应输入图像的边界像素时，其邻域范围可能扩展到输入图像的边界之外</p>
+<ol>
+<li>忽略这些边界处的像素：仅处理图像内部的像素<ol start="2">
+<li>将输入图像进行扩展：如果用半径为r的模板进行模板运算，则在图像的四条边界外各增加/扩展一个r行或r列的带</li>
+</ol>
+</li>
+</ol>
+<p>模板运算功能分类s</p>
+<p>​    图像增强：<br>$$<br>g(x,y)=E_H[f(x,y),N(x,y)]<br>$$<br>将模板运算用于图像空域增强一般称为空域滤波</p>
+<h2 id="线性平滑滤波"><a href="#线性平滑滤波" class="headerlink" title="线性平滑滤波"></a>线性平滑滤波</h2><blockquote>
+<ul>
+<li><p>方法一：邻域平均</p>
+<p>系数都是正的（保持灰度值范围，所有系数之和为1）</p>
+<p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage3.png" alt="image-20200328164746403"></p>
+</li>
+<li><p>方法二：加权平均</p>
+<p>中心系数大、周围系数小</p>
+<p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage4.png" alt="image-20200328164934165"></p>
+</li>
+<li><p>高斯平均：</p>
+<p>根据高斯分布来确定各模板系数</p>
+</li>
+<li></li>
+</ul>
+</blockquote>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin1.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/" target="_blank">模板操作、图像的锐化和平滑</a>
-  
-    </h1>
-  
+      </a>
+    </div>
+    
 
-
-        <div class="article-info info-on-right">
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          潘伟航
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://yoursite.com/2020/03/24/模板操作、图像的锐化和平滑/" title="模板操作、图像的锐化和平滑" target="_blank">http://yoursite.com/2020/03/24/模板操作、图像的锐化和平滑/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
 
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/21/JVM%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2020-03-21T15:15:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/2020/03/25/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          数据挖掘
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/21/JVM%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JVM面试问题总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/21/JVM%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" target="_blank">JVM面试问题总结</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/20/%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80%E5%92%8C%E5%8A%A8%E6%80%81%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-        <time datetime="2020-03-20T12:42:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/20/%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80%E5%92%8C%E5%8A%A8%E6%80%81%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_blank">静态语言和动态语言的区别</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/19/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%9A%84%E6%B5%81%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2020-03-19T09:14:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/19/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%9A%84%E6%B5%81%E7%A8%8B/" target="_blank">数据挖掘的流程</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/19/OpenCV%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E5%9D%87%E8%A1%A1%E5%8C%96/" class="archive-article-date">
-        <time datetime="2020-03-19T06:21:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/19/OpenCV%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E5%9D%87%E8%A1%A1%E5%8C%96/" target="_blank">OpenCV图像直方图与均衡化</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/" class="archive-article-date">
-        <time datetime="2020-03-18T15:58:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/" target="_blank">数字图像处理（1）</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/17/hello-world/" class="archive-article-date">
-        <time datetime="2020-03-17T03:56:52.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/17/hello-world/" target="_blank">Hello World</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -544,8 +522,8 @@
 	var yiliaConfig = {
 		mathjax: [object Object],
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
