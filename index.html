@@ -402,51 +402,10 @@
 <li>城区距离：D(p,q)=|x-s|+|y-t|</li>
 <li>棋盘距离：D(p,q)=max(|x-s|,|y-t|)</li>
 </ol>
-<p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage0.png" alt="image-20200324160345719"></p>
-<h2 id="模板运算"><a href="#模板运算" class="headerlink" title="模板运算"></a>模板运算</h2><p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage1.png" alt="image-20200324160957002"></p>
-<p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage2.png" alt="image-20200324161116200"></p>
-<p>模板卷积的主要步骤：</p>
-<ol>
-<li>将模板在输入图像中漫游，并将模板中心与图像中的某个像素位置重合</li>
-<li>将模板上的各个系数与模板下各对应像素的灰度值相乘</li>
-<li>将所有乘积相加（为保持灰度范围，唱将结果再除以模板系数之和）</li>
-<li>将上述结果（模板的输出响应）赋给输出图像中对应模板中心位置的像素</li>
-</ol>
-<p>模板排序的主要步骤：</p>
-<ol>
-<li>将模板在输入图像中漫游，并将模板中心与图像中某个像素位置重合</li>
-<li>读取模板下输入图像中各对应像素的灰度值</li>
-<li>将这些灰度值进行排序，一般将它们从小到大拍成一列（单增）</li>
-<li>根据运算目的从排序结果中选一个序，取出该序像素的灰度值</li>
-<li>将取出的灰度值赋给输出图像中对应模板中心位置的像素</li>
-</ol>
-<p>图像边界处的模板运算</p>
-<p>​    当模板中心对应输入图像的边界像素时，其邻域范围可能扩展到输入图像的边界之外</p>
-<ol>
-<li>忽略这些边界处的像素：仅处理图像内部的像素<ol start="2">
-<li>将输入图像进行扩展：如果用半径为r的模板进行模板运算，则在图像的四条边界外各增加/扩展一个r行或r列的带</li>
-</ol>
-</li>
-</ol>
-<p>模板运算功能分类s</p>
-<p>​    图像增强：<br>$$<br>g(x,y)=E_H[f(x,y),N(x,y)]<br>$$<br>将模板运算用于图像空域增强一般称为空域滤波</p>
-<h2 id="线性平滑滤波"><a href="#线性平滑滤波" class="headerlink" title="线性平滑滤波"></a>线性平滑滤波</h2><blockquote>
-<ul>
-<li><p>方法一：邻域平均</p>
-<p>系数都是正的（保持灰度值范围，所有系数之和为1）</p>
-<p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage3.png" alt="image-20200328164746403"></p>
-</li>
-<li><p>方法二：加权平均</p>
-<p>中心系数大、周围系数小</p>
-<p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/D:%5CHexo%5Csource_posts%5C%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%5Cimage4.png" alt="image-20200328164934165"></p>
-</li>
-<li><p>高斯平均：</p>
-<p>根据高斯分布来确定各模板系数</p>
-</li>
-<li></li>
-</ul>
-</blockquote>
-
+<p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/image0.png" alt="image-20200324160345719"></p>
+    
+    <a class="article-more-a" href="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/#more">more >></a>
+    
     
 
     
@@ -712,6 +671,17 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tags</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
