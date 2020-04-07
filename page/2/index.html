@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++相关知识总结（1） | 假言三段论</title>
+  <title>假言三段论</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="昨晚突然收到了华为的电话，说是建议我投递简历到中央研究院下编译器与编译语言开发工程师，虽然的确一脸懵逼，但是最终决定还是去试一试。询问了一下需要准备哪些方面的知识，回答说是需要准备原本的项目经历（但是原本做的项目基本上都跟C++没啥关系好像，除了用C++做过一个模拟UNIX文件系统以外），还有最主要的数据结构与算法，还有C++的相关知识。还好这些对自己来说还算是比较擅长的（原本想投递java开发岗">
-<meta property="og:type" content="article">
-<meta property="og:title" content="C++相关知识总结（1）">
-<meta property="og:url" content="http://yoursite.com/2020/04/05/C-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%881%EF%BC%89/index.html">
+    
+    <!-- <meta name="keywords" content="">
+    <meta name="description" content=""> -->
+  
+  <meta property="og:type" content="website">
+<meta property="og:title" content="假言三段论">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="假言三段论">
-<meta property="og:description" content="昨晚突然收到了华为的电话，说是建议我投递简历到中央研究院下编译器与编译语言开发工程师，虽然的确一脸懵逼，但是最终决定还是去试一试。询问了一下需要准备哪些方面的知识，回答说是需要准备原本的项目经历（但是原本做的项目基本上都跟C++没啥关系好像，除了用C++做过一个模拟UNIX文件系统以外），还有最主要的数据结构与算法，还有C++的相关知识。还好这些对自己来说还算是比较擅长的（原本想投递java开发岗">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-05T11:51:39.000Z">
-<meta property="article:modified_time" content="2020-04-06T15:45:56.797Z">
 <meta property="article:author" content="潘伟航">
 <meta name="twitter:card" content="summary">
   
@@ -193,217 +193,49 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C-相关知识总结（1）" class="article article-type-post " itemscope itemprop="blogPost">
+            
+
+  
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 class="article-title" itemprop="name">
-      C++相关知识总结（1）
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/03/17/hello-world/" target="_blank">Hello World</a>
+  
     </h1>
   
 
 
   
   
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2020/04/05/C-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%881%EF%BC%89/" class="archive-article-date">
-        <time datetime="2020-04-05T11:51:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-05</time>
+<a href="/2020/03/17/hello-world/" class="archive-article-date">
+        <time datetime="2020-03-17T03:56:52.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
 </a>
 
   
   
     
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">2.8k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">9分</span>
-    </span>
-  </span>
-</div>
-
 
   
   </header>
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>昨晚突然收到了华为的电话，说是建议我投递简历到中央研究院下编译器与编译语言开发工程师，虽然的确一脸懵逼，但是最终决定还是去试一试。询问了一下需要准备哪些方面的知识，回答说是需要准备原本的项目经历（但是原本做的项目基本上都跟C++没啥关系好像，除了用C++做过一个模拟UNIX文件系统以外），还有最主要的数据结构与算法，还有C++的相关知识。还好这些对自己来说还算是比较擅长的（原本想投递java开发岗位来着，但是java方面需要补的知识点也太多了）。</p>
-<p>所以接下来就打算对C++的知识做一个大概的回顾，临时抱下佛脚吧。</p>
-<h2 id="static-关键字的作用"><a href="#static-关键字的作用" class="headerlink" title="static 关键字的作用"></a>static 关键字的作用</h2><blockquote>
-<ol>
-<li>在<strong>全局变量</strong>前加上关键字static，全局变量就定义成一个<strong>全局静态变量</strong>，静态存储区，<strong>在整个程序运行期间一直存在。</strong>初始化：未经过初始化的全局静态变量会被自动初始化为0（自动对象的值是任意的，除非他被显式初始化）作用域：全局静态变量在声明他的文件之外是不可见的，准确地说是从定义之处开始，到文件结尾。<a id="more"></a></li>
-<li><strong>局部静态变量</strong>：在局部变量之前加上关键字static，局部变量就成为一个局部静态变量。内存中的位置：静态存储区；初始化：编译时自动赋初值为0（数值型变量）或空字符（字符变量），如果不是静态的局部变量（自动变量），则为一个不确定的值。作用域仍为局部作用域，当定义它的函数或语句块结束时作用域结束，但是局部静态变量并没有销毁，仍然在内存当中，且不能进行访问，直到重新访问该函数，并且值不变。</li>
-<li><strong>静态函数</strong>：在函数返回类型前加static，函数就定义为静态函数。函数的定义和声明在默认情况下都是extern的（表示此函数在其他模块（例如其他cpp）中是可以引用的），但是静态函数就只能在当前声明它的文件中可见，不能被其他文件所用。也就是说其他文件即使有同名的，也不影响。ps：我们写代码的时候不要在头文件中声明static的全局函数，也不要在cpp文件中声明非static的全局函数。</li>
-<li><strong>类的静态成员</strong>:在类中，静态成员可以实现多个对象之间的数据共享，<strong>并且使用静态数据成员不会破坏隐藏的原则</strong>，保证了安全性。因此，静态成员是类的所有对象中共享的成员，而不是某个对象的成员。对多个对象来说，静态数据成员只存储一处，供所有对象共用。</li>
-<li><strong>类的静态函数</strong>：静态成员函数和静态数据成员一样，它们都属于类的静态成员，它们都不是对象成员。因此，对静态成员的引用不需要用对象名。                                                     在静态成员函数的实现中不能直接引用类中说明的非静态成员，可以引用类中说明的静态成员（这点非常重要）。如果静态成员函数中要引用非静态成员时，可通过对象来引用。从中可看出，调用静态成员函数使用如下格式：&lt;类名&gt;::&lt;静态成员函数名&gt;(&lt;参数表&gt;);</li>
-</ol>
-</blockquote>
-<h2 id="C和C-的区别"><a href="#C和C-的区别" class="headerlink" title="C和C++的区别"></a>C和C++的区别</h2><blockquote>
-<ul>
-<li>设计思想上：C++是面向对象的语言，而C是面向过程的结构化编程语言</li>
-<li>语法上：C++具有封装、继承、多态三种特性；C++相比C，增加了许多类型安全的功能，比如强制类型转换等；C++支持范式编程，比如模板类、函数模板等。</li>
-</ul>
-</blockquote>
-<h2 id="C-C-中指针和引用的区别（重点）"><a href="#C-C-中指针和引用的区别（重点）" class="headerlink" title="C/C++中指针和引用的区别（重点）"></a>C/C++中指针和引用的区别（重点）</h2><blockquote>
-<ul>
-<li>指针有自己的一块空间，而引用只是一个别名；</li>
-<li>使用sizeof函数看一个指针的大小是4，而引用则是被引用对象的大小；</li>
-<li>指针可以被初始化为NULL，而引用必须是初始化为一个已有对象的引用；</li>
-<li>作为参数传递时，指针需要被解引用才可以对对象进行操作，而直接对引用的修改都会改变引用所指向的对象；</li>
-<li>可以有const指针，但是没有const引用；</li>
-<li>指针在使用中可以指向其他对象，但是引用只能是一个对象的引用，不能被改变；</li>
-<li>指针可以有多级指针（**p），而引用只能是一级；</li>
-<li>指针与引用使用++运算符的意义不一样；</li>
-<li>如果返回动态内存分配的对象或者内存，必须使用指针，引用可能引起内存泄漏。</li>
-</ul>
-</blockquote>
-<h2 id="说一说C-中四种cast转换"><a href="#说一说C-中四种cast转换" class="headerlink" title="说一说C++中四种cast转换"></a>说一说C++中四种cast转换</h2><blockquote>
-<p>C++中四种类型转换是：static_cast，dynamic_cast，const_cast，reinterpret_cast</p>
-<ol>
-<li><p>const_cast：用于将const变量转为非const</p>
-</li>
-<li><p>static_cast：用于各种隐式转换，比如非const转const，void*转指针等，static_cast能用于多态向上转化，如果向下转能成功但是不安全，结果未知；</p>
-</li>
-<li><p>dynamic_cast：用于动态类型转换。只能用于含有<strong>虚函数</strong>的类，用于类层次间的向上和向下转化。只能转指针或引用。向下转化时，如果是非法的对于指针返回NULL，对于引用抛异常。要深入了解内部转换的原理。</p>
-<p>向上转换：指的是子类向基类转换；向下转换：指的是基类向子类的转换</p>
-<p>它通过判断在执行到该语句的时候变量的运行时类型和要转换的类型是否相同来判断是否能够进行向下转换。</p>
-</li>
-<li><p>reinterpret_cast：几乎什么都可以转，比如int转指针，可能会出问题，尽量少用；</p>
-</li>
-<li><p>为什么不适用C的强制转换？：因为C的强制转换表面上看起来功能强大什么都能转，但是转化不够明确，不能进行错误检查，容易出错。</p>
-</li>
-</ol>
-</blockquote>
-<h2 id="说一说你理解的C-中的smart-pointer四个智能指针"><a href="#说一说你理解的C-中的smart-pointer四个智能指针" class="headerlink" title="说一说你理解的C++中的smart pointer四个智能指针"></a>说一说你理解的C++中的smart pointer四个智能指针</h2><blockquote>
-<p>四个智能指针包括shared_ptr，unique_ptr，weak_ptr，auto_ptr；（但是auto_ptr已经不受C++11支持了，被弃用了）</p>
-<ol>
-<li><p>为什么要使用智能指针？</p>
-<p>答：智能指针的作用是管理一个指针，因为存在以下这种情况：申请的空间在函数结束时忘记释放，造成内存泄漏。使用指针指针可以很大程度上避免这个问题，因为智能指针就是一个类，当超出了类的作用域时，类会自动调用析构函数，析构函数会自动释放资源。所以智能指针的作用原理就是在函数结束时自动释放内存空间，不需要手动释放内存空间。</p>
-</li>
-<li><p>auto_ptr（C++98的方案，cpp11已经抛弃）：存在潜在的内存崩溃问题</p>
-</li>
-<li><p>unique_ptr（替换auto_ptr）：实现独占式拥有或严格拥有概念，保证同一时间只有一个智能指针可以指向该对象。对于避免资源泄漏（new创建对象之后因为发生异常而忘记调用delete）特别有用</p>
-</li>
-<li><p>shared_ptr：实现共享式拥有概念。多个智能指针可以指向相同对象，该对象和其相关资源“最后一个引用被销毁”时候释放。（使用计数机制来表明资源被几个指针共享，成员函数：use_count()来查看资源的所有者个数）。除了可以通过new来构造，还可以通过传入auto_ptr, unique_ptr,weak_ptr来构造。当我们调用release()时，当前指针会释放资源所有权，计数减一。当计数等于0时，资源会被释放。</p>
-</li>
-<li><p>weak_ptr：是一种不控制对象生命周期的智能指针，它指向一个shared_ptr管理的对象。进行该对象的内存管理的是那个强引用的shared_ptr。weak_ptr只是提供了对管理对象的一个访问手段。weak_ptr 设计的目的是为配合 shared_ptr 而引入的一种智能指针来协助 shared_ptr 工作, 它只可以从一个 shared_ptr 或另一个 weak_ptr 对象构造, 它的构造和析构不会引起引用记数的增加或减少。weak_ptr是用来解决shared_ptr相互引用时的死锁问题,如果说两个shared_ptr相互引用,那么这两个指针的引用计数永远不可能下降为0,资源永远不会释放。它是对对象的一种弱引用，不会增加对象的引用计数，和shared_ptr之间可以相互转化，shared_ptr可以直接赋值给它，它可以通过调用lock函数来获得shared_ptr。不过要注意的是weak_ptr不能够直接访问对象的方法，要先转换为shared_ptr才行。</p>
-</li>
-</ol>
-</blockquote>
-<h2 id="数组和指针的区别"><a href="#数组和指针的区别" class="headerlink" title="数组和指针的区别"></a>数组和指针的区别</h2><table>
-<thead>
-<tr>
-<th align="center">指针</th>
-<th align="center">数组</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">保存数据的地址</td>
-<td align="center">保存数据</td>
-</tr>
-<tr>
-<td align="center">间接访问数据，首先获得指针的内容，然后将其作为地址，从该地址中提取数据</td>
-<td align="center">直接访问数据</td>
-</tr>
-<tr>
-<td align="center">通常用于动态的数据结构</td>
-<td align="center">通常用于固定数目且数据类型相同的元素</td>
-</tr>
-<tr>
-<td align="center">通过<strong>Malloc</strong>分配内存，free释放内存</td>
-<td align="center">隐式的分配和删除</td>
-</tr>
-<tr>
-<td align="center">通常指向匿名数据，操作匿名函数</td>
-<td align="center">自身即为数据名</td>
-</tr>
-</tbody></table>
-<h2 id="野指针是什么"><a href="#野指针是什么" class="headerlink" title="野指针是什么"></a>野指针是什么</h2><blockquote>
-<p><strong>野指针就是指向一个已删除的对象或者未申请访问受限内存区域的指针</strong></p>
-</blockquote>
-<h2 id="C-中引用和指针的理解"><a href="#C-中引用和指针的理解" class="headerlink" title="C++中引用和指针的理解"></a>C++中引用和指针的理解</h2><blockquote>
-<ul>
-<li>引用：C++是C语言的继承，它可进行过程化程序设计，又可以进行以抽象数据类型为特点的基于对象的程序设计，还可以进行以继承和多态为特点的面向对象的程序设计。引用就是C++对C语言的重要扩充。引用就是某一变量的一个别名，对引用的操作与对变量直接操作完全一样。引用的声明方法：类型标识符 &amp;引用名=目标变量名；引用引入了对象的一个同义词。定义引用的表示方法与定义<a href="https://baike.baidu.com/item/指针/2878304" target="_blank" rel="noopener">指针</a>相似，只是用&amp;代替了*。</li>
-<li>指针：指针利用地址，它的值直接指向存在电脑存储器中另一个地方的值。由于通过地址能找到所需的变量单元，可以说，地址指向该变量单元。因此，将地址形象化的称为“指针”。意思是通过它能找到以它为地址的内存单元。</li>
-</ul>
-</blockquote>
-<p><strong>对于多级指针的理解</strong></p>
+    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+    
+    <a class="article-more-a" href="/2020/03/17/hello-world/#more">more >></a>
+    
+    
 
     
 
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/alipay.png">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/weixin1.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          潘伟航
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://yoursite.com/2020/04/05/C-相关知识总结（1）/" title="C++相关知识总结（1）" target="_blank">http://yoursite.com/2020/04/05/C-相关知识总结（1）/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
-          
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
     
 
   </div>
@@ -413,85 +245,16 @@
     
 
     
-
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/03/17/hello-world/">展开全文 >></a>
+    </p>
     
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/05/C-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%881%EF%BC%89/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/2020/04/07/C-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%882%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++相关知识总结（2）
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/03/29/%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E7%AD%89%E4%BB%B7%E7%9A%84%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">二叉树转等价的中缀表达式</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -512,14 +275,12 @@
 
 
 
-
-
-
-
-
-
-
-
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -559,8 +320,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: [object Object],
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
