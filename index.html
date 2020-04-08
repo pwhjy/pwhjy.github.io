@@ -196,6 +196,122 @@
             
 
   
+    <article id="post-C-相关知识总结（3）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/04/08/C-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%883%EF%BC%89/" target="_blank">C++相关知识总结（3）</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/04/08/C-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%883%EF%BC%89/" class="archive-article-date">
+        <time datetime="2020-04-08T14:03:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-08</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="map与set的区别，分别又是怎么实现的？"><a href="#map与set的区别，分别又是怎么实现的？" class="headerlink" title="map与set的区别，分别又是怎么实现的？"></a>map与set的区别，分别又是怎么实现的？</h2><blockquote>
+<p>map和set都是C++的关联容器，其底层实现都是红黑树（RB-Tree）。由于map和set所开放的各种操作接口，RB-Tree也都提供了，所以几乎所有的map和set的操作行为，都知识转调RB-Tree的操作行为。</p>
+<p>map与set的区别在于：</p>
+<ol>
+<li>map中的元素是&lt;key,value&gt;（&lt;关键字,值&gt;）对：关键字起到索引的作用，值则表示与索引相关联的数据；set与之相对关键字的简单集合，set中每个元素只包含了一个关键字。</li>
+<li>set的迭代器是const的，不允许修改元素的值；map允许修改，不允许修改key。其原因是因为map和set是根据关键字排序来保证其有序性的，如果允许修改key的话，那么首先需要删除该键，然后调节平衡，再插入修改后的键值，调节平衡，如此一来，严重破坏了map和set的结构，导致iterator失效，不知道应该指向改变前的位置，还是改变后的位置。索引STL中将set的迭代器设置成const，不允许修改迭代器的值；而map的迭代器则不允许修改key的值，允许修改value值。</li>
+<li>map支持下标操作，set不支持下标操作。map可以用key做下标，map的下标运算符<code>[]</code>将关键码作为下标去执行查找，如果关键码不存在，则插入一个具有该关键码和mapped_type类型默认值的元素至map中，因此下标运算符<code>[]</code>在map应用中需要慎用，const_map不能用，只希望确定某一个关键值是否存在而不希望插入元素时也不应该使用，mapped_type类型没有默认值也不应该使用。如果find能解决需要，尽可能用find。</li>
+</ol>
+</blockquote>
+<h2 id="STL中的allocator（分配器）"><a href="#STL中的allocator（分配器）" class="headerlink" title="STL中的allocator（分配器）"></a>STL中的allocator（分配器）</h2><blockquote>
+<ul>
+<li><p>STL的分配器用于封装STL容器在内存管理上的底层细节。</p>
+<p>在C++中，其内存配置和释放如下：</p>
+</li>
+<li><p>new运算分两个阶段：（1）调用::operator new 配置内存；（2）调用对象构造函数构造对象内容</p>
+</li>
+<li><p>delete运算分为两个阶段：（1）调用对象析构函数；（2）调用::operator delete释放内存</p>
+</li>
+<li><p>为了精密分工，STL allocator将两个阶段操作区分开来：内存配置有alloc::allocate()负责，内存释放由alloc::deallocate()负责；对象构造由::construct()负责，对象析构由::destroy()负责。</p>
+</li>
+<li><p>同时为了提升内存管理的效率，减少申请小内存造成的内存碎片问题，SGL STL采用了两级配置器，当分配的空间大小超过128B时，会使用第一级空间配置器；当分配的空间大小小于128B时，将使用第二级配置器。第一级空间配置器直接使用malloc()、realloc()、free()函数进行内存空间的分配和释放，而第二级空间配置器采用了内存池技术，通过空闲链表来管理内存。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="STL迭代器删除元素"><a href="#STL迭代器删除元素" class="headerlink" title="STL迭代器删除元素"></a>STL迭代器删除元素</h2><blockquote>
+<p>这里主要考察的是迭代器失效的问题。</p>
+<ul>
+<li>对于序列容器vector,deque来说，使用erase(itertor)后，后边的每个元素的迭代器都会失效，但是后边每个元素都会往前移动一个位置，但是erase会返回下一个有效的迭代器；</li>
+<li>对于关联容器map set来说，使用了erase(iterator)后，当前元素的迭代器失效，但是其结构是红黑树，删除当前元素的，不会影响到下一个元素的迭代器，所以在调用erase之前，记录下一个元素的迭代器即可；</li>
+<li>对于list来说，它使用了不连续分配的内存，并且它的erase方法也会返回下一个有效的iterator，因此上面两种正确的方法都可以使用。</li>
+</ul>
+</blockquote>
+<h2 id="MAP数据存放形式"><a href="#MAP数据存放形式" class="headerlink" title="MAP数据存放形式"></a>MAP数据存放形式</h2><blockquote>
+<p>红黑树。unordered map底层结构是哈希表。</p>
+</blockquote>
+<h2 id="STL的基本组成"><a href="#STL的基本组成" class="headerlink" title="STL的基本组成"></a>STL的基本组成</h2><blockquote>
+<p>STL主要由：</p>
+<ol>
+<li>容器；2. 迭代器；3.仿函数；4.算法；5.分配器；6.配接器；</li>
+</ol>
+<p>他们之间的关系：分配器给容器分配存储空间，算法通过迭代器获取容器中的内容，仿函数可以协助算法完成各种操作，配接器用来套接适配仿函数；</p>
+</blockquote>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/04/08/C-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%883%EF%BC%89/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-C-相关知识总结（2）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -935,86 +1051,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/03/19/OpenCV%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E5%9D%87%E8%A1%A1%E5%8C%96/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数字图像处理（1）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/" target="_blank">数字图像处理（1）</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/" class="archive-article-date">
-        <time datetime="2020-03-18T15:58:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="初学数字图像处理"><a href="#初学数字图像处理" class="headerlink" title="初学数字图像处理"></a>初学数字图像处理</h1><p>​    我们在新接触数字图像处理的时候，肯定会接触到颜色模型的概念。原先我们接触最多的就是<strong>RGB</strong>颜色模型，但是其实还有更多的，例如<strong>HIS</strong>,<strong>YUV</strong>,<strong>YCbCr</strong>以及<strong>CIE L*a*b*</strong> 等。</p>
-<h2 id="图像表示"><a href="#图像表示" class="headerlink" title="图像表示"></a>图像表示</h2><h3 id="光谱图"><a href="#光谱图" class="headerlink" title="光谱图"></a>光谱图</h3><p><img src="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/image-20200318223735841.png" alt></p>
-<p><strong>24位彩色图像</strong>：通常真彩色用三字节的R，G，B来表示，即8:8:8=24位。</p>
-<p><strong>R、G、B（三基色波长（CIE）</strong>Blue：435.8nm，Green：546.1nm，Red：700nm）</p>
-    
-    <a class="article-more-a" href="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/03/18/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89/">展开全文 >></a>
     </p>
     
 
