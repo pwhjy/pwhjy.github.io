@@ -18,7 +18,7 @@
 <meta property="og:description" content="map与set的区别，分别又是怎么实现的？ map和set都是C++的关联容器，其底层实现都是红黑树（RB-Tree）。由于map和set所开放的各种操作接口，RB-Tree也都提供了，所以几乎所有的map和set的操作行为，都知识转调RB-Tree的操作行为。 map与set的区别在于：  map中的元素是&lt;key,value&gt;（&lt;关键字,值&gt;）对：关键字起到索引的作用，">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-08T14:03:08.000Z">
-<meta property="article:modified_time" content="2020-04-08T14:59:14.531Z">
+<meta property="article:modified_time" content="2020-04-09T07:26:33.910Z">
 <meta property="article:author" content="潘伟航">
 <meta name="twitter:card" content="summary">
   
@@ -226,7 +226,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.1k字</span>
+      <span class="post-count">2.8k字</span>
     </span>
   </span>
 
@@ -235,7 +235,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">10分</span>
     </span>
   </span>
 </div>
@@ -255,7 +255,7 @@
 <li>map支持下标操作，set不支持下标操作。map可以用key做下标，map的下标运算符<code>[]</code>将关键码作为下标去执行查找，如果关键码不存在，则插入一个具有该关键码和mapped_type类型默认值的元素至map中，因此下标运算符<code>[]</code>在map应用中需要慎用，const_map不能用，只希望确定某一个关键值是否存在而不希望插入元素时也不应该使用，mapped_type类型没有默认值也不应该使用。如果find能解决需要，尽可能用find。</li>
 </ol>
 </blockquote>
-<h2 id="STL中的allocator（分配器）"><a href="#STL中的allocator（分配器）" class="headerlink" title="STL中的allocator（分配器）"></a>STL中的allocator（分配器）</h2><blockquote>
+<h2 id="STL中的allocator（分配器）"><a href="#STL中的allocator（分配器）" class="headerlink" title="STL中的allocator（分配器）"></a>STL中的allocator（分配器）<a id="more"></a></h2><blockquote>
 <ul>
 <li><p>STL的分配器用于封装STL容器在内存管理上的底层细节。</p>
 <p>在C++中，其内存配置和释放如下：</p>
@@ -279,7 +279,7 @@
 </ul>
 </blockquote>
 <h2 id="MAP数据存放形式"><a href="#MAP数据存放形式" class="headerlink" title="MAP数据存放形式"></a>MAP数据存放形式</h2><blockquote>
-<p>红黑树。unordered map底层结构是哈希表。</p>
+<p>红黑树。unordered map（multimap）底层结构是哈希表。</p>
 </blockquote>
 <h2 id="STL的基本组成"><a href="#STL的基本组成" class="headerlink" title="STL的基本组成"></a>STL的基本组成</h2><blockquote>
 <p>STL主要由：</p>
@@ -287,6 +287,77 @@
 <li>容器；2. 迭代器；3.仿函数；4.算法；5.分配器；6.配接器；</li>
 </ol>
 <p>他们之间的关系：分配器给容器分配存储空间，算法通过迭代器获取容器中的内容，仿函数可以协助算法完成各种操作，配接器用来套接适配仿函数；</p>
+</blockquote>
+<h2 id="map与unordered-map"><a href="#map与unordered-map" class="headerlink" title="map与unordered_map"></a>map与unordered_map</h2><blockquote>
+<ol>
+<li>Map映射，map的所有元素都是pair，同时拥有实值（value）和键值（key）。pair的第一元素被视为键值，第二元素被视为实值。所有元素都会根据元素的键值自动被排序。不允许键值重复。底层实现：红黑树。适用场景：有序键值对不重复映射</li>
+<li>Multimap：多重映射。multimap的所有元素都是pair，同时拥有实值（value）和键值（key）。pair的第一元素被视为键值，第二元素被视为实值。所有元素都会根据元素的键值自动被排序。允许键值重复。 底层实现：红黑树。 适用场景：有序键值可重复映射。</li>
+</ol>
+</blockquote>
+<h2 id="vector和list的区别与应用"><a href="#vector和list的区别与应用" class="headerlink" title="vector和list的区别与应用"></a>vector和list的区别与应用</h2><blockquote>
+<ul>
+<li><p>Vector</p>
+<p>连续存储的容器，动态数组，在堆上分配空间</p>
+<p>底层实现：数组</p>
+<p>两倍容量增长：vector增加（插入）新元素时，如果未超过当时的容量，则还有剩余空间，那么直接添加到最后（插入指定位置），然后调整迭代器。如果没有剩余空间了，则会重新分配原有元素个数的两倍空间，然后将原空间元素通过复制的方式初始化新空间，再向新空间增加元素，最后析构并释放空间，之前的迭代器就会失效。</p>
+<p>性能：访问：O(1)；//插入：在最后插入(空间够)：很快；在最后插入（空间不够）：需要内存申请和释放，以及对之前数据进行拷贝。在中间插入（空间够）：内存拷贝。在中间插入（空间不够）：需要内存申请和释放，以及对之前数据进行拷贝。//删除：在最后删除：很快；在中间删除：内存拷贝；适用场景：经常随机访问，且不经常对非尾节点进行插入删除。</p>
+</li>
+<li><p>List</p>
+<p>动态链表，在堆上分配空间，每插入一个元素都会分配空间，每删除一个元素都会释放空间。</p>
+<p>底层：双向链表</p>
+<p>性能：</p>
+<p>访问：随机访问性能很差，只能快速访问头尾节点</p>
+<p>插入：很快，一般是常数开销</p>
+<p>删除：很快，一般是常数开销</p>
+<p>适用场景：经常插入删除大量数据</p>
+</li>
+<li><p>区别：</p>
+<ul>
+<li>vector底层实现是数组；list是双向链表</li>
+<li>vector支持随机访问，list不支持</li>
+<li>vector是顺序内存，list不是</li>
+<li>vector在中间节点进行插入删除会导致内存拷贝，list不会</li>
+<li>vector一次性分配好内存，不够时才进行2倍扩容；list每次插入新节点都会进行内存申请。</li>
+<li>vector随机访问性能更好，插入删除性能差；list随机访问性能差，插入删除性能好。</li>
+</ul>
+</li>
+<li><p>应用</p>
+<ul>
+<li>vector拥有一段连续的内存空间，因此支持随机访问，如果需要高效的随机访问，而不在乎插入和删除的效率，使用vector。</li>
+<li>list拥有一段不连续的内存空间，如果需要高效的插入和删除，而不关心随机访问，则应使用list</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="STL中迭代器的作用，有指针为何还要迭代器"><a href="#STL中迭代器的作用，有指针为何还要迭代器" class="headerlink" title="STL中迭代器的作用，有指针为何还要迭代器"></a>STL中迭代器的作用，有指针为何还要迭代器</h2><blockquote>
+<ul>
+<li><p>迭代器</p>
+<p>iterator（迭代器）模式又称Cursor（游标）模式，用于提供一种方法顺序访问一个聚合对象中各个元素，而又不需暴露该对象的内部表示。或者这样说可能更容易理解：iterator模式是运用于聚合对象的一种模式，通过运用该模式，使得我们可以在不知道对象内部表示的情况下，按照一定顺序（由iterator提供的方法）访问聚合对象中的各个元素。</p>
+<p>由于iterator模式的以上特性：与聚合对象耦合，在一定程度上限制了它的广泛运用，一般仅用于底层聚合支持类，如STL的list、vector、stack等容器类及ostream_iterator等扩展iterator。</p>
+</li>
+<li><p>迭代器与指针的区别</p>
+<p>迭代器不是指针，是类模板，表现得像指针。他只是模拟了指针的一些功能，通过重载了指针的一些操作符，-&gt;、*、++、–等。迭代器封装了指针，是一个“可遍历STL（Standard Template Library）容器内全部或部分元素“的对象，本质是封装了原生指针，是指针概念的一种提升（lift），提供了比指针更高级的行为，相当于一种智能指针，可以根据不同类型的数据结构来实现不同的++、–等操作。</p>
+<p>迭代器返回的是对象引用而不是对象的值，所以cout只能输出迭代器使用*取值后的值而不能直接输出其自身。</p>
+</li>
+<li><p>迭代器产生的原因</p>
+<p>iterator类的访问方式就是把不同的集合类的访问逻辑抽象出来，使得不用暴露集合内部的结构而达到循环遍历集合的效果。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="STL中resize和reserve的区别"><a href="#STL中resize和reserve的区别" class="headerlink" title="STL中resize和reserve的区别"></a>STL中resize和reserve的区别</h2><blockquote>
+<ul>
+<li><p>resize()：改变当前容器内含有的元素的数量(size())</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">v.resize(len);</span><br></pre></td></tr></table></figure>
+
+<p>这里v的size变为len，如果原来v的size小于len，那么容器就新增(len-size)个元素，元素的值默认为0，当v.push_back)(3)；之后，则是3放在了v的末尾，即下标为len，此时的容器是size为len+1；</p>
+<p>reserve()：改变当前容器的最大容量（capacity），它不会生成元素，只是确定这个容器允许放入多少个对象，如果reserve(len)的值大于当前的capacity()，那么会重新分配一块能存len个对象的空间，然后把之前v.size()个对象通过copy constructor复制过来，销毁之前的内存；</p>
+<p>可以通过下列代码进行测试：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">    a.reserve(<span class="number">100</span>);</span><br><span class="line">    a.resize(<span class="number">50</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;a.<span class="built_in">size</span>()&lt;&lt;<span class="string">"  "</span>&lt;&lt;a.capacity()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="comment">//50  100</span></span><br><span class="line">    a.resize(<span class="number">150</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;a.<span class="built_in">size</span>()&lt;&lt;<span class="string">"  "</span>&lt;&lt;a.capacity()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="comment">//150  200</span></span><br><span class="line">    a.reserve(<span class="number">50</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;a.<span class="built_in">size</span>()&lt;&lt;<span class="string">"  "</span>&lt;&lt;a.capacity()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="comment">//150  200</span></span><br><span class="line">    a.resize(<span class="number">50</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;a.<span class="built_in">size</span>()&lt;&lt;<span class="string">"  "</span>&lt;&lt;a.capacity()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="comment">//50  200    </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h2 id="n个整数的无序数组，找到每个元素后面比它大的第一个数，要求时间复杂度为0-N"><a href="#n个整数的无序数组，找到每个元素后面比它大的第一个数，要求时间复杂度为0-N" class="headerlink" title="n个整数的无序数组，找到每个元素后面比它大的第一个数，要求时间复杂度为0(N)"></a>n个整数的无序数组，找到每个元素后面比它大的第一个数，要求时间复杂度为0(N)</h2><blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;num=&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">99</span>,<span class="number">101</span>,<span class="number">5</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">find</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=num.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">if</span>(len==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> num;<span class="comment">//这里为空</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt;notFind;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;res(len,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;len)&#123;</span><br><span class="line">        <span class="keyword">if</span>(notFind.empty()||num[notFind.top()]&gt;=num[i])&#123;</span><br><span class="line">            notFind.push(i++);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            res[notFind.top()]=num[i];</span><br><span class="line">            notFind.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;res=<span class="built_in">find</span>(num);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> i:res)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </blockquote>
 
     

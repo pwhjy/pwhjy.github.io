@@ -234,40 +234,10 @@
 <li>map支持下标操作，set不支持下标操作。map可以用key做下标，map的下标运算符<code>[]</code>将关键码作为下标去执行查找，如果关键码不存在，则插入一个具有该关键码和mapped_type类型默认值的元素至map中，因此下标运算符<code>[]</code>在map应用中需要慎用，const_map不能用，只希望确定某一个关键值是否存在而不希望插入元素时也不应该使用，mapped_type类型没有默认值也不应该使用。如果find能解决需要，尽可能用find。</li>
 </ol>
 </blockquote>
-<h2 id="STL中的allocator（分配器）"><a href="#STL中的allocator（分配器）" class="headerlink" title="STL中的allocator（分配器）"></a>STL中的allocator（分配器）</h2><blockquote>
-<ul>
-<li><p>STL的分配器用于封装STL容器在内存管理上的底层细节。</p>
-<p>在C++中，其内存配置和释放如下：</p>
-</li>
-<li><p>new运算分两个阶段：（1）调用::operator new 配置内存；（2）调用对象构造函数构造对象内容</p>
-</li>
-<li><p>delete运算分为两个阶段：（1）调用对象析构函数；（2）调用::operator delete释放内存</p>
-</li>
-<li><p>为了精密分工，STL allocator将两个阶段操作区分开来：内存配置有alloc::allocate()负责，内存释放由alloc::deallocate()负责；对象构造由::construct()负责，对象析构由::destroy()负责。</p>
-</li>
-<li><p>同时为了提升内存管理的效率，减少申请小内存造成的内存碎片问题，SGL STL采用了两级配置器，当分配的空间大小超过128B时，会使用第一级空间配置器；当分配的空间大小小于128B时，将使用第二级配置器。第一级空间配置器直接使用malloc()、realloc()、free()函数进行内存空间的分配和释放，而第二级空间配置器采用了内存池技术，通过空闲链表来管理内存。</p>
-</li>
-</ul>
-</blockquote>
-<h2 id="STL迭代器删除元素"><a href="#STL迭代器删除元素" class="headerlink" title="STL迭代器删除元素"></a>STL迭代器删除元素</h2><blockquote>
-<p>这里主要考察的是迭代器失效的问题。</p>
-<ul>
-<li>对于序列容器vector,deque来说，使用erase(itertor)后，后边的每个元素的迭代器都会失效，但是后边每个元素都会往前移动一个位置，但是erase会返回下一个有效的迭代器；</li>
-<li>对于关联容器map set来说，使用了erase(iterator)后，当前元素的迭代器失效，但是其结构是红黑树，删除当前元素的，不会影响到下一个元素的迭代器，所以在调用erase之前，记录下一个元素的迭代器即可；</li>
-<li>对于list来说，它使用了不连续分配的内存，并且它的erase方法也会返回下一个有效的iterator，因此上面两种正确的方法都可以使用。</li>
-</ul>
-</blockquote>
-<h2 id="MAP数据存放形式"><a href="#MAP数据存放形式" class="headerlink" title="MAP数据存放形式"></a>MAP数据存放形式</h2><blockquote>
-<p>红黑树。unordered map底层结构是哈希表。</p>
-</blockquote>
-<h2 id="STL的基本组成"><a href="#STL的基本组成" class="headerlink" title="STL的基本组成"></a>STL的基本组成</h2><blockquote>
-<p>STL主要由：</p>
-<ol>
-<li>容器；2. 迭代器；3.仿函数；4.算法；5.分配器；6.配接器；</li>
-</ol>
-<p>他们之间的关系：分配器给容器分配存储空间，算法通过迭代器获取容器中的内容，仿函数可以协助算法完成各种操作，配接器用来套接适配仿函数；</p>
-</blockquote>
-
+<h2 id="STL中的allocator（分配器）"><a href="#STL中的allocator（分配器）" class="headerlink" title="STL中的allocator（分配器）"></a>STL中的allocator（分配器）</h2>
+    
+    <a class="article-more-a" href="/2020/04/08/C-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%883%EF%BC%89/#more">more >></a>
+    
     
 
     
