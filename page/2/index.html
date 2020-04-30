@@ -196,6 +196,181 @@
             
 
   
+    <article id="post-数据挖掘" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/03/25/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" target="_blank">数据挖掘</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/03/25/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" class="archive-article-date">
+        <time datetime="2020-03-25T04:25:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tags</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/03/25/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-模板操作、图像的锐化和平滑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/" target="_blank">模板操作、图像的锐化和平滑</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/" class="archive-article-date">
+        <time datetime="2020-03-24T07:05:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="预备知识："><a href="#预备知识：" class="headerlink" title="预备知识："></a><strong>预备知识：</strong></h2><p><strong>邻接</strong>：仅考虑像素间的空间关系<br><strong>连接</strong>：还考虑像素的灰度值<br>通路：仅借助邻接来定义<br><strong>连通</strong>：还考虑像素的连接情况<br>子集：一般为满足连接的像素集合</p>
+<p><strong>像素间的距离：</strong><br>距离度量函数：假设有3个像素p，q，r，坐标(x,y)，(s,t)，(u,v)</p>
+<ol>
+<li>(D(p,q)≥0)（D(p,q)=0,当且仅当p=q）两个像素之间的距离总是正的</li>
+<li>(D(p,q)=D(q,p)) 距离与起终点的选择无关</li>
+<li>D(p,r)≤D(p,q)+D(q,r) 最短距离是沿直线的</li>
+</ol>
+<p><strong>距离量度函数</strong></p>
+<ol>
+<li>欧式距离：D(p,q)=[(x-s)²+(y-t)²]^（1/2）</li>
+<li>城区距离：D(p,q)=|x-s|+|y-t|</li>
+<li>棋盘距离：D(p,q)=max(|x-s|,|y-t|)</li>
+</ol>
+<p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/image0.png" alt="image-20200324160345719"></p>
+    
+    <a class="article-more-a" href="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JVM面试问题总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

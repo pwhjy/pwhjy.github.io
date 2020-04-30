@@ -196,6 +196,206 @@
             
 
   
+    <article id="post-Faster-RCNN相关总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/04/20/Faster-RCNN%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" target="_blank">Faster RCNN相关总结</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/04/20/Faster-RCNN%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" class="archive-article-date">
+        <time datetime="2020-04-20T07:34:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/04/20/Faster-RCNN%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C-编译与底层" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/04/18/C-%E7%BC%96%E8%AF%91%E4%B8%8E%E5%BA%95%E5%B1%82/" target="_blank">C++编译与底层</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/04/18/C-%E7%BC%96%E8%AF%91%E4%B8%8E%E5%BA%95%E5%B1%82/" class="archive-article-date">
+        <time datetime="2020-04-18T15:25:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-18</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="编译与底层"><a href="#编译与底层" class="headerlink" title="编译与底层"></a>编译与底层</h1><h2 id="请你说一下一个C-源文件从文本到可执行文件经历的过程？"><a href="#请你说一下一个C-源文件从文本到可执行文件经历的过程？" class="headerlink" title="请你说一下一个C++源文件从文本到可执行文件经历的过程？"></a>请你说一下一个C++源文件从文本到可执行文件经历的过程？</h2><blockquote>
+<p>对于C++源文件，从文本到可执行文件一般需要四个过程：</p>
+<ul>
+<li>预处理阶段：对源代码文件中文件包含关系（头文件）、预编译语句（宏定义）进行分析和替换，生成预编译文件。</li>
+<li>编译阶段：将经过预处理后的预编译文件转换成特定汇编代码，生成汇编文件。</li>
+<li>汇编阶段：将编译阶段生成的汇编文件转化成机器码，生成可重定位目标文件</li>
+<li>链接阶段：将多个目标文件及所需要的库连接成最终可执行目标文件</li>
+</ul>
+</blockquote>
+<h2 id="include头文件的顺序以及双引号“-”和尖括号-lt-gt-的区别"><a href="#include头文件的顺序以及双引号“-”和尖括号-lt-gt-的区别" class="headerlink" title="include头文件的顺序以及双引号“ ”和尖括号&lt;&gt;的区别"></a>include头文件的顺序以及双引号“ ”和尖括号&lt;&gt;的区别</h2><blockquote>
+<p>Include头文件的顺序：对于include的头文件来说，如果在文件a.h中声明一个在文件b.h中定义的变量，而不引用b.h。那么要在a.c文件中引用b.h文件，并且要先引用b.h，后引用a.h,否则汇报变量类型未声明错误。</p>
+<p>双引号和尖括号的区别：编译器预处理阶段查找头文件的路径不一样。</p>
+<p>使用双引号的顺序为：1. 当前头文件目录 2. 编译器设置的头文件路径 3. 系统变量CPLUS_INCLUDE_PATH/C_INCLUDE_PATH指定的头文件路径。</p>
+<p>使用尖括号的路径：1. 编译器设置的头文件路径 2.系统变量CPLUS_INCLUDE_PATH/C_INCLUDE_PATH指定的头文件路径。</p>
+</blockquote>
+<h2 id="C-的内存管理"><a href="#C-的内存管理" class="headerlink" title="C++的内存管理"></a>C++的内存管理</h2><blockquote>
+<p>在C++中，虚拟内存分为代码段、数据段、BSS段、堆区、文件映射区以及栈区六部分</p>
+<p>代码段：包括只读存储区和文本区，其中只读存储区存储字符串常量，文本区存储程序的机器代码。</p>
+<p>数据段：存储程序中已初始化的全局变量和静态变量</p>
+<p>bss段：存储未初始化的全局变量和静态变量（局部和全局），以及所有被初始化为0的全局变量和静态变量。</p>
+<p>堆区：调用new/malloc函数时在堆区动态分配内存，同时需要调用delete/free来手动释放申请的内存。</p>
+<p>映射区：存储动态链接库以及调用mmap函数进行的文件映射</p>
+<p>栈区：使用栈空间存储函数的返回地址、参数、局部变量、返回值</p>
+</blockquote>
+<h2 id="如何判断内存泄漏"><a href="#如何判断内存泄漏" class="headerlink" title="如何判断内存泄漏"></a>如何判断内存泄漏</h2><blockquote>
+<p>内存泄漏通常是由于调用了malloc/new等内存申请的操作，但是缺少了对应的free/delete操作。为了判断内存是否泄漏，我们一方面可以使用linux环境下的内存泄漏检查工具Valgrind，另一方面在写代码时可以添加内存申请和释放的统计功能，统计当前申请和释放的内存一致，以此来判断内存是否泄漏。</p>
+</blockquote>
+<h2 id="为什么会发生段错误"><a href="#为什么会发生段错误" class="headerlink" title="为什么会发生段错误"></a>为什么会发生段错误</h2><blockquote>
+<p>段错误通常发生在访问非法内存地址的时候，具体来说分为以下情况：</p>
+<p>使用野指针；试图修改字符串常量的内容；</p>
+</blockquote>
+<h2 id="什么是memory-leak，也就是内存泄漏"><a href="#什么是memory-leak，也就是内存泄漏" class="headerlink" title="什么是memory leak，也就是内存泄漏"></a>什么是memory leak，也就是内存泄漏</h2><blockquote>
+<p>内存泄漏（memory leak）是指由于疏忽或错误造成了程序未能释放掉不再使用的内存的情况。内存泄漏并非指内存在物理上的消失，而是应用程序分配某段内存后，由于设计错误，失去了对该段内存的控制，因而造成了内存的浪费。</p>
+<p>内存泄漏的分类：</p>
+<ul>
+<li>堆内存泄漏。对内存指的是程序运行中根据需要分配通过malloc，realloc，new等从堆中分配的一块内存，再是完成后必须通过调用对应free或者delete删掉。如果程序的设计的错误导致这部分内存没有被释放掉，那么此后这块内存将不会被使用，就造成了内存泄漏。</li>
+<li>系统资源泄漏（Resource Leak）：主要指程序使用系统分配的资源比如Bitmap，handle，SOCKET等没有使用相应的函数释放掉，导致系统资源的浪费，严重可导致系统效能降低，系统运行不稳定。</li>
+<li>没有将基类的析构函数定义为虚函数。当基类指针指向子类对象时，如果基类的析构函数不是virtual，那么子类的析构函数将不会被调用，子类的资源没有正确释放，因此造成内存泄漏。</li>
+</ul>
+</blockquote>
+<h2 id="new和malloc的区别"><a href="#new和malloc的区别" class="headerlink" title="new和malloc的区别"></a>new和malloc的区别</h2><blockquote>
+<ul>
+<li>new分配内存按照数据类型进行分配，malloc分配内存按照指定的大小分配</li>
+<li>new返回的是指定对象的指针，而malloc返回的是void*,因此malloc的返回值一半都需要进行类型转化。</li>
+<li>new不仅分配一段内存，而且会调用构造函数，malloc不会。</li>
+<li>new分配的内存要用delete销毁，malloc要用free来销毁；delete销毁的时候会调用对象的析构函数，而free不会。</li>
+<li>new是一个操作符可以重载，malloc是一个库函数。</li>
+<li>malloc分配的内存不够的时候，可以用realloc扩容。（扩容的原理？）new没有这样的操作。</li>
+<li>new如果分配失败了会抛出bad_malloc，而malloc失败了会返回NULL。</li>
+<li>申请数组时：new[]一次分配所有内存，多次调用构造函数，搭配使用delete[]，delete[]多次调用析构函数，销毁数组中的每个对象。而malloc则只能sizeof(int)*n。</li>
+</ul>
+</blockquote>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/04/18/C-%E7%BC%96%E8%AF%91%E4%B8%8E%E5%BA%95%E5%B1%82/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-用QT-opencv2-VS2019实现SLIC超像素分割小软件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -953,181 +1153,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/03/29/%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E7%AD%89%E4%BB%B7%E7%9A%84%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据挖掘" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/03/25/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" target="_blank">数据挖掘</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/03/25/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" class="archive-article-date">
-        <time datetime="2020-03-25T04:25:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tags</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/03/25/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-模板操作、图像的锐化和平滑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/" target="_blank">模板操作、图像的锐化和平滑</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/" class="archive-article-date">
-        <time datetime="2020-03-24T07:05:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="预备知识："><a href="#预备知识：" class="headerlink" title="预备知识："></a><strong>预备知识：</strong></h2><p><strong>邻接</strong>：仅考虑像素间的空间关系<br><strong>连接</strong>：还考虑像素的灰度值<br>通路：仅借助邻接来定义<br><strong>连通</strong>：还考虑像素的连接情况<br>子集：一般为满足连接的像素集合</p>
-<p><strong>像素间的距离：</strong><br>距离度量函数：假设有3个像素p，q，r，坐标(x,y)，(s,t)，(u,v)</p>
-<ol>
-<li>(D(p,q)≥0)（D(p,q)=0,当且仅当p=q）两个像素之间的距离总是正的</li>
-<li>(D(p,q)=D(q,p)) 距离与起终点的选择无关</li>
-<li>D(p,r)≤D(p,q)+D(q,r) 最短距离是沿直线的</li>
-</ol>
-<p><strong>距离量度函数</strong></p>
-<ol>
-<li>欧式距离：D(p,q)=[(x-s)²+(y-t)²]^（1/2）</li>
-<li>城区距离：D(p,q)=|x-s|+|y-t|</li>
-<li>棋盘距离：D(p,q)=max(|x-s|,|y-t|)</li>
-</ol>
-<p><img src="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/image0.png" alt="image-20200324160345719"></p>
-    
-    <a class="article-more-a" href="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/03/24/%E6%A8%A1%E6%9D%BF%E6%93%8D%E4%BD%9C%E3%80%81%E5%9B%BE%E5%83%8F%E7%9A%84%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91/">展开全文 >></a>
     </p>
     
 
