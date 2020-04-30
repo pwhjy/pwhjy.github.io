@@ -308,50 +308,9 @@
 <li>链接阶段：将多个目标文件及所需要的库连接成最终可执行目标文件</li>
 </ul>
 </blockquote>
-<h2 id="include头文件的顺序以及双引号“-”和尖括号-lt-gt-的区别"><a href="#include头文件的顺序以及双引号“-”和尖括号-lt-gt-的区别" class="headerlink" title="include头文件的顺序以及双引号“ ”和尖括号&lt;&gt;的区别"></a>include头文件的顺序以及双引号“ ”和尖括号&lt;&gt;的区别</h2><blockquote>
-<p>Include头文件的顺序：对于include的头文件来说，如果在文件a.h中声明一个在文件b.h中定义的变量，而不引用b.h。那么要在a.c文件中引用b.h文件，并且要先引用b.h，后引用a.h,否则汇报变量类型未声明错误。</p>
-<p>双引号和尖括号的区别：编译器预处理阶段查找头文件的路径不一样。</p>
-<p>使用双引号的顺序为：1. 当前头文件目录 2. 编译器设置的头文件路径 3. 系统变量CPLUS_INCLUDE_PATH/C_INCLUDE_PATH指定的头文件路径。</p>
-<p>使用尖括号的路径：1. 编译器设置的头文件路径 2.系统变量CPLUS_INCLUDE_PATH/C_INCLUDE_PATH指定的头文件路径。</p>
-</blockquote>
-<h2 id="C-的内存管理"><a href="#C-的内存管理" class="headerlink" title="C++的内存管理"></a>C++的内存管理</h2><blockquote>
-<p>在C++中，虚拟内存分为代码段、数据段、BSS段、堆区、文件映射区以及栈区六部分</p>
-<p>代码段：包括只读存储区和文本区，其中只读存储区存储字符串常量，文本区存储程序的机器代码。</p>
-<p>数据段：存储程序中已初始化的全局变量和静态变量</p>
-<p>bss段：存储未初始化的全局变量和静态变量（局部和全局），以及所有被初始化为0的全局变量和静态变量。</p>
-<p>堆区：调用new/malloc函数时在堆区动态分配内存，同时需要调用delete/free来手动释放申请的内存。</p>
-<p>映射区：存储动态链接库以及调用mmap函数进行的文件映射</p>
-<p>栈区：使用栈空间存储函数的返回地址、参数、局部变量、返回值</p>
-</blockquote>
-<h2 id="如何判断内存泄漏"><a href="#如何判断内存泄漏" class="headerlink" title="如何判断内存泄漏"></a>如何判断内存泄漏</h2><blockquote>
-<p>内存泄漏通常是由于调用了malloc/new等内存申请的操作，但是缺少了对应的free/delete操作。为了判断内存是否泄漏，我们一方面可以使用linux环境下的内存泄漏检查工具Valgrind，另一方面在写代码时可以添加内存申请和释放的统计功能，统计当前申请和释放的内存一致，以此来判断内存是否泄漏。</p>
-</blockquote>
-<h2 id="为什么会发生段错误"><a href="#为什么会发生段错误" class="headerlink" title="为什么会发生段错误"></a>为什么会发生段错误</h2><blockquote>
-<p>段错误通常发生在访问非法内存地址的时候，具体来说分为以下情况：</p>
-<p>使用野指针；试图修改字符串常量的内容；</p>
-</blockquote>
-<h2 id="什么是memory-leak，也就是内存泄漏"><a href="#什么是memory-leak，也就是内存泄漏" class="headerlink" title="什么是memory leak，也就是内存泄漏"></a>什么是memory leak，也就是内存泄漏</h2><blockquote>
-<p>内存泄漏（memory leak）是指由于疏忽或错误造成了程序未能释放掉不再使用的内存的情况。内存泄漏并非指内存在物理上的消失，而是应用程序分配某段内存后，由于设计错误，失去了对该段内存的控制，因而造成了内存的浪费。</p>
-<p>内存泄漏的分类：</p>
-<ul>
-<li>堆内存泄漏。对内存指的是程序运行中根据需要分配通过malloc，realloc，new等从堆中分配的一块内存，再是完成后必须通过调用对应free或者delete删掉。如果程序的设计的错误导致这部分内存没有被释放掉，那么此后这块内存将不会被使用，就造成了内存泄漏。</li>
-<li>系统资源泄漏（Resource Leak）：主要指程序使用系统分配的资源比如Bitmap，handle，SOCKET等没有使用相应的函数释放掉，导致系统资源的浪费，严重可导致系统效能降低，系统运行不稳定。</li>
-<li>没有将基类的析构函数定义为虚函数。当基类指针指向子类对象时，如果基类的析构函数不是virtual，那么子类的析构函数将不会被调用，子类的资源没有正确释放，因此造成内存泄漏。</li>
-</ul>
-</blockquote>
-<h2 id="new和malloc的区别"><a href="#new和malloc的区别" class="headerlink" title="new和malloc的区别"></a>new和malloc的区别</h2><blockquote>
-<ul>
-<li>new分配内存按照数据类型进行分配，malloc分配内存按照指定的大小分配</li>
-<li>new返回的是指定对象的指针，而malloc返回的是void*,因此malloc的返回值一半都需要进行类型转化。</li>
-<li>new不仅分配一段内存，而且会调用构造函数，malloc不会。</li>
-<li>new分配的内存要用delete销毁，malloc要用free来销毁；delete销毁的时候会调用对象的析构函数，而free不会。</li>
-<li>new是一个操作符可以重载，malloc是一个库函数。</li>
-<li>malloc分配的内存不够的时候，可以用realloc扩容。（扩容的原理？）new没有这样的操作。</li>
-<li>new如果分配失败了会抛出bad_malloc，而malloc失败了会返回NULL。</li>
-<li>申请数组时：new[]一次分配所有内存，多次调用构造函数，搭配使用delete[]，delete[]多次调用析构函数，销毁数组中的每个对象。而malloc则只能sizeof(int)*n。</li>
-</ul>
-</blockquote>
-
+    
+    <a class="article-more-a" href="/2020/04/18/C-%E7%BC%96%E8%AF%91%E4%B8%8E%E5%BA%95%E5%B1%82/#more">more >></a>
+    
     
 
     
@@ -668,40 +627,10 @@
 <td>较复杂</td>
 </tr>
 </tbody></table>
-<h2 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h2><blockquote>
-<ul>
-<li>对于一个带排序数组来说，其初始有序数组元素个数为1，然后从第二个元素，插入到有序数组中。对于每一次插入操作，从后往前遍历当前有序数组，如果当前元素大于要插入的元素，则后移一位；如果当前元素小于或者等于要插入的元素，则将要插入的元素插入到当前元素的下一位。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[]=&#123;<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">9</span>,<span class="number">7</span>&#125;</span><br><span class="line"><span class="keyword">void</span> insert(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;a)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;a.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> temp=a[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;=<span class="number">0</span>&amp;&amp;temp&lt;a[j];j--)</span><br><span class="line">        &#123;</span><br><span class="line">			a[j+<span class="number">1</span>]=a[j];</span><br><span class="line">        &#125;</span><br><span class="line">        a[j+<span class="number">1</span>]=temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>对上述代码可以做一个改进：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BinInsertSort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;a.<span class="built_in">size</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">		<span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right=i<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> temp=a[i];</span><br><span class="line">        <span class="keyword">while</span>(left&lt;=right)</span><br><span class="line">        &#123;</span><br><span class="line">			<span class="keyword">int</span> mid=(ledt+right)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(a[mid]&gt;temp)&#123;</span><br><span class="line">                right=mid<span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                left=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;left;j--)&#123;<span class="comment">//这里a[left,i-1]的元素整体后移</span></span><br><span class="line">            a[j+<span class="number">1</span>]=a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        a[left]=temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="直接选择排序"><a href="#直接选择排序" class="headerlink" title="直接选择排序"></a>直接选择排序</h2><blockquote>
-<ul>
-<li>每次循环，选择当前无序数组中最小的那个元素，然后将其与无序数组的第一个元素交换位置，从而使有序数组元素加1，无序数组元素减1。初始时无序数组为空。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;a)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.<span class="built_in">size</span>()<span class="number">-1</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> minindex=i;</span><br><span class="line">        <span class="keyword">int</span> <span class="built_in">min</span>=a[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;a.<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[j]&lt;a[i])&#123;</span><br><span class="line">                minindex=j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(a[i],a[minindex]);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp=a;</span><br><span class="line">    a=b;</span><br><span class="line">    b=temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><blockquote>
-<ul>
-<li>先将整个待排序记录分割称若干子序列，然后分别进行直接插入排序，待整个序列中的记录基本有序时，再对全体记录进行一次直接插入排序。其子序列的构成不是简单的逐段分割，而是将每隔某个增量的记录组成一个子序列。希尔排序时间复杂度与增量序列的选取有关，其最后一个值必须为1。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><blockquote>
-<ul>
-<li>对于包含n个元素的带排序数组，重复遍历数组，首先比较第一个和第二个元素，若为逆序，则交换元素位置；然后比较第二个和第三个元素，重复上述过程。每次遍历会把当前前n-i个元素中的最大的元素移到n-i位置。遍历n次，完成排序。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.<span class="built_in">size</span>()<span class="number">-1</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;a.<span class="built_in">size</span>()<span class="number">-1</span>-i;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])&#123;</span><br><span class="line">                swap(a[j],a[j+<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><blockquote>
-<ul>
-<li>通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(low&gt;=high)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> first=low</span><br><span class="line">    <span class="keyword">int</span> last=high;</span><br><span class="line">    <span class="keyword">int</span> key=a[first];</span><br><span class="line">    <span class="keyword">while</span>(first&lt;last)&#123;</span><br><span class="line">        <span class="keyword">while</span>(first&lt;last&amp;&amp;a[last]&gt;=key)&#123;</span><br><span class="line">			last--;<span class="comment">//找到第一个比基准值小的</span></span><br><span class="line">        &#125;</span><br><span class="line">        a[first]=a[last];</span><br><span class="line">        <span class="keyword">while</span>(first&lt;last&amp;&amp;a[first]&lt;=key)&#123;</span><br><span class="line">			first++;</span><br><span class="line">        &#125;</span><br><span class="line">        a[last]=a[first];</span><br><span class="line">    &#125;</span><br><span class="line">    a[first]=key;</span><br><span class="line">    QuickSort(a,low,first<span class="number">-1</span>);</span><br><span class="line">    QuickSort(a,first+<span class="number">1</span>,high);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-
+<h2 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a></h2>
+    
+    <a class="article-more-a" href="/2020/04/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%881%EF%BC%89/#more">more >></a>
+    
     
 
     

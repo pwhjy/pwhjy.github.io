@@ -18,7 +18,7 @@
 <meta property="og:description" content="编译与底层请你说一下一个C++源文件从文本到可执行文件经历的过程？ 对于C++源文件，从文本到可执行文件一般需要四个过程：  预处理阶段：对源代码文件中文件包含关系（头文件）、预编译语句（宏定义）进行分析和替换，生成预编译文件。 编译阶段：将经过预处理后的预编译文件转换成特定汇编代码，生成汇编文件。 汇编阶段：将编译阶段生成的汇编文件转化成机器码，生成可重定位目标文件 链接阶段：将多个目标文件及所">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-18T15:25:42.000Z">
-<meta property="article:modified_time" content="2020-04-30T09:47:43.464Z">
+<meta property="article:modified_time" content="2020-04-30T09:53:52.639Z">
 <meta property="article:author" content="潘伟航">
 <meta name="twitter:card" content="summary">
   
@@ -255,6 +255,8 @@
 <li>链接阶段：将多个目标文件及所需要的库连接成最终可执行目标文件</li>
 </ul>
 </blockquote>
+<a id="more"></a>
+
 <h2 id="include头文件的顺序以及双引号“-”和尖括号-lt-gt-的区别"><a href="#include头文件的顺序以及双引号“-”和尖括号-lt-gt-的区别" class="headerlink" title="include头文件的顺序以及双引号“ ”和尖括号&lt;&gt;的区别"></a>include头文件的顺序以及双引号“ ”和尖括号&lt;&gt;的区别</h2><blockquote>
 <p>Include头文件的顺序：对于include的头文件来说，如果在文件a.h中声明一个在文件b.h中定义的变量，而不引用b.h。那么要在a.c文件中引用b.h文件，并且要先引用b.h，后引用a.h,否则汇报变量类型未声明错误。</p>
 <p>双引号和尖括号的区别：编译器预处理阶段查找头文件的路径不一样。</p>
